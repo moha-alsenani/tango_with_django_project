@@ -6,6 +6,10 @@ class PageAdmin(admin.ModelAdmin):
     list_filter = ('category',)  # adding a filter option by category
     search_fields = ('title', 'url')  # allowing searching by title and URL
 
-admin.site.register(Category)
-admin.site.register(Page, PageAdmin) # Register the Category and Page models with the customized admin interface
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug':('name',)}
+
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Page, PageAdmin) 
+
 
